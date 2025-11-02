@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Learn Using Gemini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
+      }
+    }
+    </script>
+    <style>
+      /* Lightning Animation for Dashboard Cards */
+      @keyframes shimmer {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .animated-border-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .animated-border-card::before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #6366f1 /* indigo-500 */
+        );
+        animation: shimmer 4s linear infinite;
+        /* Animation is paused by default and plays on hover */
+        animation-play-state: paused;
+      }
+      
+      .dark .animated-border-card::before {
+        background-image: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #a5b4fc /* indigo-300 */
+        );
+      }
+
+      .animated-border-card:hover::before {
+        animation-play-state: running;
+      }
+    </style>
+    <style>
+      /* Background Blob Animation */
+      .background-animation {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 0; /* Behind the content */
+        overflow: hidden;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px); /* Soft edges */
+        opacity: 0.3;
+      }
+
+      .dark .blob {
+        opacity: 0.5;
+      }
+
+      .blob.one {
+        width: 400px;
+        height: 400px;
+        background-color: #a78bfa; /* violet-400 */
+        animation: move-blob-1 15s infinite alternate;
+      }
+
+      .blob.two {
+        width: 300px;
+        height: 300px;
+        background-color: #7c3aed; /* violet-700 */
+        animation: move-blob-2 12s infinite alternate;
+      }
+      
+      .blob.three {
+        width: 250px;
+        height: 250px;
+        background-color: #4f46e5; /* indigo-600 */
+        animation: move-blob-3 18s infinite alternate;
+      }
+
+      @keyframes move-blob-1 {
+        from { transform: translate(-10%, -10%); }
+        to { transform: translate(80vw, 70vh); }
+      }
+      @keyframes move-blob-2 {
+        from { transform: translate(100vw, 50vh); }
+        to { transform: translate(10vw, 10vh); }
+      }
+      @keyframes move-blob-3 {
+        from { transform: translate(40vw, 100vh); }
+        to { transform: translate(70vw, -20vh); }
+      }
+    </style>
+    <style>
+      /* Marquee Animation for Motivational Quotes */
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .marquee-content {
+        display: inline-block;
+        padding-left: 100%; /* Starts the content off-screen to the right */
+        animation: marquee 45s linear infinite;
+      }
+
+      .marquee-content span {
+        display: inline-block;
+        padding: 0 2rem; /* Adds spacing between quotes */
+        font-style: italic;
+      }
+
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+    </style>
+    <script>
+      // This script runs before React to prevent a flash of unstyled content (FOUC)
+      // It sets the theme based on localStorage or the user's OS preference.
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>

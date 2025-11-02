@@ -1,0 +1,7 @@
+{
+  "name": "Personal Learn by Gemini",
+  "description": "A personal AI-powered study application featuring mock interviews, programming practice, concept explainers for OS and CN, and an automated timetable generator.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
